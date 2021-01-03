@@ -1,6 +1,5 @@
 var lb = 0;
 var time = 0;
-var r = 2000;
 var paused = false;
 
 window.onload = function init() {
@@ -125,8 +124,8 @@ function gameOver() {
                 window.location.reload();
             } else {}
         });
-   const context = canvas.getContext("2d");
-   context.clearRect(0, 0, canvas.width, canvas.height);
+    const context = canvas.getContext("2d");
+    context.clearRect(0, 0, canvas.width, canvas.height);
 
 }
 class PinkCubeScript extends Script {
@@ -509,10 +508,10 @@ class Hierarchy {
                 translation: translate(2, 0, -5)
             })
         );
-        const ssscript = new YellowCubeScript();
-        ssscript.gameObject = gameObjects["yellowCube"];
-        ssscript.gameObjects = this.gameObjects;
-        gameObjects["yellowCube"].component.script = ssscript;
+        const yellow = new YellowCubeScript();
+        yellow.gameObject = gameObjects["yellowCube"];
+        yellow.gameObjects = this.gameObjects;
+        gameObjects["yellowCube"].component.script = yellow;
         ////
         gameObjects["redCube"] = new Cube(
             "redCube",
@@ -566,32 +565,32 @@ class Hierarchy {
         grey.gameObjects = this.gameObjects;
         gameObjects["greyCube"].component.script = grey;
         ////
-        gameObjects["blackCube"] = new Cube(
-            "blackCube",
+        gameObjects["whiteCube"] = new Cube(
+            "whiteCube",
             gl,
             vec4(1.0, 1.0, 1.0, 1.0),
             new Transform({
                 translation: translate(-6, 0, -5)
             })
         );
-        const black = new WhiteCubeScript();
-        black.gameObject = gameObjects["blackCube"];
-        black.gameObjects = this.gameObjects;
-        gameObjects["blackCube"].component.script = black;
+        const white = new WhiteCubeScript();
+        white.gameObject = gameObjects["whiteCube"];
+        white.gameObjects = this.gameObjects;
+        gameObjects["whiteCube"].component.script = white;
         ////
 
-        gameObjects["whiteCube"] = new Cube(
-            "whiteCube",
+        gameObjects["blackCube"] = new Cube(
+            "blackCube",
             gl,
-            vec4(0.0, 0.0, 0.0, 0.0),
+            vec4(1.0, 1.0, 0.0, 1.0),
             new Transform({
                 translation: translate(-8, 0, -5)
             })
         );
-        const white = new BlackCubeScript();
-        white.gameObject = gameObjects["whiteCube"];
-        white.gameObjects = this.gameObjects;
-        gameObjects["whiteCube"].component.script = white;
+        const black = new BlackCubeScript();
+        black.gameObject = gameObjects["blackCube"];
+        black.gameObjects = this.gameObjects;
+        gameObjects["blackCube"].component.script = black;
         ////
         gameObjects["velvetCube"] = new Cube(
             "velvetCube",
@@ -610,7 +609,7 @@ class Hierarchy {
         gameObjects["fixedCube"] = new Cube(
             "fixedCube",
             gl,
-            vec4(1.0, 0.0, 1.0, 1.0),
+            vec4(0.0, 0.0, 0.0, 0.0),
             new Transform({
                 translation: translate(lb, 0, 9)
             })
@@ -1129,8 +1128,6 @@ function cubePointsAndColors(color) {
     const colorList = [color, color, color, color, color, color, color, color];
 
     // each 3 index is a triangle. each 6 index is a face.
-    // prettier-ignore
-    //const indices = [1,0,3,1,3,2,2,3,7,2,7,6,3,0,4,3,4,7,6,5,1,6,1,2,4,5,6,4,6,7,5,4,0,5,0,1];
     const indices = [1, 0, 3, 1, 2, 3, 2, 3, 7, 2, 6, 7, 3, 0, 4, 3, 7, 4, 6, 5, 1, 6, 2, 1, 4, 5, 6, 4, 7, 6, 5, 4, 0, 5, 1, 0];
     for (let i of indices) {
         points.push(vertices[i]);

@@ -1,4 +1,0 @@
-* Game objects
-* Rudimentary collision detection
-* Game object start and update functions
-* explicit WebGL operations in GameObjects
